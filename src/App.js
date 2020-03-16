@@ -1,26 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+      item:'',
+      items:[]
+    }
+    this.inputlist = this.inputlist.bind(this)
+    this.submitbutton = this.submitbutton.bind(this)
+  }
+
+  inputlist(event){
+    let field = "item"
+    let val = event.target.value
+    this.setState({[field]: val})
+  }
+
+  submitbutton(){
+    //console.log(this.state.item, this.state.items)
+    let itemslist = this.state.items
+    let item = this.state.item
+    itemslist.push(item)
+   
+    this.setState({items:itemslist})
+  }
+
+  
+  render(){
+    return(
+      <div>
+        <h1>Todo APP</h1>
+
+       
+          <input
+          type="text"
+          name="item"
+          onChange={this.inputlist}
+          ></input>
+          <button onClick={this.submitbutton}>Submit</button>
+          {
+            this.state.items.map((item,index) =>{
+              return(
+                <p key={index}>{item}</p>
+              )
+            })
+          }
+      </div>
+    );
+  }
 }
+
 
 export default App;
