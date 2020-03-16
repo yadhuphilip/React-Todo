@@ -25,6 +25,7 @@ class App extends React.Component{
     itemslist.push(item)
    
     this.setState({items:itemslist})
+    this.setState({item:''});
   }
 
   
@@ -37,6 +38,7 @@ class App extends React.Component{
           <input
           type="text"
           name="item"
+          value = {this.state.item}
           onChange={this.inputlist}
           ></input>
           <button onClick={this.submitbutton}>Submit</button>
